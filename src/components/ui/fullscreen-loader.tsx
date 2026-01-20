@@ -49,16 +49,12 @@ export const FullScreenLoader = () => {
           <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-purple-500 border-r-pink-500"></div>
           <div className="absolute inset-2 rounded-full border-4 border-transparent border-b-yellow-400 border-l-purple-300"></div>
         </div>
-
-        {/* Pulsing center */}
-        <div className="loader-pulse w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 shadow-lg"></div>
-
         {/* Loading text */}
         <div className="text-center">
           <p className="text-lg font-bold bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-500 bg-clip-text text-transparent">
-            Loading
+            Loading...
           </p>
-          <p className="text-sm text-purple-600 font-semibold mt-1">Baby Market Fighter</p>
+          <p className="text-5xl text-purple-600 font-semibold mt-1">Baby Market Fighter</p>
         </div>
       </div>
     </div>
