@@ -62,9 +62,9 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
       }`}
     >
       {/* Left side - Logo/Title */}
-      <div className="flex flex-row items-center gap-2 h-[26px]">
+      <div className="flex flex-row items-center gap-2 h-[32px]">
         {authenticated === true && (
-          <div className="text-medium hidden sm:flex h-[22px] items-center justify-center rounded-full border-2 border-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 text-white px-[0.5rem] text-[0.625rem] sm:text-[0.75rem] font-bold shadow-lg">
+          <div className="text-medium hidden sm:flex h-[28px] items-center justify-center rounded-full border-2 border-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 text-white px-[0.75rem] text-[0.875rem] sm:text-[1rem] font-bold shadow-lg">
             Baby Market Fighter
           </div>
         )}
@@ -72,12 +72,12 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
 
       {/* Center - Navigation (hidden on mobile) */}
       {authenticated === true && (
-        <div className="hidden md:flex flex-row items-center gap-4 lg:gap-8">
+        <div className="hidden md:flex flex-row items-center gap-8 lg:gap-12">
           {navItems.map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-yellow-500 hover:bg-clip-text transition-all duration-300 ease-in-out font-bold text-xs sm:text-sm cursor-pointer pb-1 border-b-2 border-transparent hover:border-b-2 hover:border-pink-400 hover:scale-110 transform"
+              className="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-yellow-500 hover:bg-clip-text transition-all duration-300 ease-in-out font-bold text-xl sm:text-lg cursor-pointer pb-1 border-b-2 border-transparent hover:border-b-2 hover:border-pink-400 hover:scale-110 transform"
             >
               {item}
             </a>
@@ -108,7 +108,7 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
                   <a
                     key={item}
                     href={`#${item.toLowerCase()}`}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-white hover:text-transparent hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-yellow-500 hover:bg-clip-text font-bold transition-all duration-300 ease-in-out rounded-lg mx-2"
+                    className="block px-4 py-2 text-base text-gray-700 hover:bg-white hover:text-transparent hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-yellow-500 hover:bg-clip-text font-bold transition-all duration-300 ease-in-out rounded-lg mx-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item}
@@ -260,7 +260,7 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
         ) : authenticated !== true && onLoginClick ? (
           <button
             onClick={onLoginClick}
-            className="bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 text-white px-3 sm:px-6 py-2 rounded-full hover:shadow-lg hover:scale-110 transform transition-all duration-300 ease-in-out font-bold text-xs sm:text-sm whitespace-nowrap"
+            className="bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 text-white px-4 sm:px-7 py-2.5 rounded-full hover:shadow-lg hover:scale-110 transform transition-all duration-300 ease-in-out font-bold text-sm sm:text-base whitespace-nowrap"
           >
             Login
           </button>
