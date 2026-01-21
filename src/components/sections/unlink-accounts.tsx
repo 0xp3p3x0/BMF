@@ -84,21 +84,6 @@ const UnlinkAccounts = () => {
       }
     }
 
-    if (acc.type === "google_oauth") {
-      const subject = acc.subject;
-      availableActions.push({
-        name: `Unlink Google (${subject.slice(0, 6)}...)`,
-        function: async () => {
-          try {
-            await unlinkGoogle(subject);
-            showSuccessToast("Google account unlinked successfully");
-          } catch (error) {
-            console.log(error);
-            showErrorToast("Failed to unlink Google account");
-          }
-        },
-      });
-    }
 
     if (acc.type === "apple_oauth") {
       const subject = acc.subject;
