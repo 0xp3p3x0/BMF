@@ -4,6 +4,7 @@ interface IAction {
   name: string;
   function: () => void;
   disabled?: boolean;
+  icon?: React.ReactNode;
 }
 
 interface ISection {
@@ -34,11 +35,16 @@ const Section = ({
             key={index}
             onClick={action.function}
             disabled={action.disabled}
-            className={`button ${
+            className={`button flex items-center gap-2 ${
               action.disabled ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >
-            {action.name}
+            {action.icon && (
+              <span className="inline-flex items-center">
+                {action.icon}
+              </span>
+            )}
+            <span>{action.name}</span>
           </button>
         ))}
       </div>

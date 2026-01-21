@@ -1,8 +1,11 @@
 import { ChevronDownIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
 import Link from "next/link";
-import { usePrivy } from "@privy-io/react-auth";
+import { usePrivy, useLinkAccount } from "@privy-io/react-auth";
 import { useState, useRef, useEffect } from "react";
+import { showSuccessToast, showErrorToast } from "./custom-toast";
+import { SiDiscord, SiTelegram } from "react-icons/si";
+import { FaGithub } from "react-icons/fa6";
 
 
 interface HeaderProps {
@@ -11,7 +14,21 @@ interface HeaderProps {
 }
 
 export function Header({ authenticated, onLoginClick }: HeaderProps) {
-  const { user, logout } = usePrivy();
+  const { 
+    user, 
+    logout, 
+    unlinkGithub, 
+    unlinkDiscord, 
+    unlinkTelegram, 
+  } = usePrivy();
+  const linkHandlers = useLinkAccount({
+    onSuccess: ({ linkMethod }) => {
+      showSuccessToast(`${linkMethod} account linked successfully`);
+    },
+    onError: (e: any) => {
+      showErrorToast(`Failed to link account: ${e.message}`);
+    },
+  });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"profile" | "social" | "wallets">("profile");
@@ -44,11 +61,67 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Get linked accounts
+  const linkedAccounts = user?.linkedAccounts || [];
+  
+  // Check which social accounts are linked
+  const twitterAccount = linkedAccounts.find((acc: any) => acc.type === "twitter");
+  const discordAccount = linkedAccounts.find((acc: any) => acc.type === "discord");
+  const telegramAccount = linkedAccounts.find((acc: any) => acc.type === "telegram");
+  const githubAccount = linkedAccounts.find((acc: any) => acc.type === "github");
+
   const socialAccounts = [
-    { name: "Twitter", connected: false },
-    { name: "Discord", connected: false },
-    { name: "Telegram", connected: false },
-    { name: "Instagram", connected: false },
+    { 
+      name: "Discord", 
+      icon: <SiDiscord className="w-5 h-5" />,
+      connected: !!discordAccount,
+      account: discordAccount,
+      linkHandler: linkHandlers.linkDiscord,
+      unlinkHandler: async () => {
+        try {
+          if (discordAccount) {
+            await unlinkDiscord((discordAccount as any).subject);
+            showSuccessToast("Discord account unlinked successfully");
+          }
+        } catch (error) {
+          showErrorToast("Failed to unlink Discord account");
+        }
+      }
+    },
+    { 
+      name: "Telegram", 
+      icon: <SiTelegram className="w-5 h-5" />,
+      connected: !!telegramAccount,
+      account: telegramAccount,
+      linkHandler: linkHandlers.linkTelegram,
+      unlinkHandler: async () => {
+        try {
+          if (telegramAccount) {
+            await unlinkTelegram((telegramAccount as any).telegramUserId);
+            showSuccessToast("Telegram account unlinked successfully");
+          }
+        } catch (error) {
+          showErrorToast("Failed to unlink Telegram account");
+        }
+      }
+    },
+    { 
+      name: "Github", 
+      icon: <FaGithub className="w-5 h-5" />,
+      connected: !!githubAccount,
+      account: githubAccount,
+      linkHandler: linkHandlers.linkGithub,
+      unlinkHandler: async () => {
+        try {
+          if (githubAccount) {
+            await unlinkGithub((githubAccount as any).subject);
+            showSuccessToast("Github account unlinked successfully");
+          }
+        } catch (error) {
+          showErrorToast("Failed to unlink Github account");
+        }
+      }
+    },
   ];
 
   const wallets = user?.linkedAccounts?.filter((acc: any) => typeof acc?.type === "string" && acc.type === "wallet") || [];
@@ -156,7 +229,7 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
                     onClick={() => setActiveTab("profile")}
                     className={`flex-1 px-3 sm:px-4 py-2 sm:py-3 font-bold text-xs sm:text-sm transition-all duration-300 ease-in-out ${activeTab === "profile" ? "text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 bg-clip-text border-b-4 border-pink-500" : "text-gray-600 hover:text-pink-600"}`}
                   >
-                    Profile
+                    Account
                   </button>
                   <button
                     onClick={() => setActiveTab("social")}
@@ -198,12 +271,26 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
                     <div className="space-y-2">
                       {socialAccounts.map((account) => (
                         <div key={account.name} className="flex items-center justify-between p-2 sm:p-3 border-2 border-pink-300 rounded-2xl hover:border-purple-400 transition-all duration-300 ease-in-out bg-white hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50">
-                          <span className="text-xs sm:text-sm font-bold text-gray-900">{account.name}</span>
-                          <button className={`px-2 sm:px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ease-in-out transform hover:scale-105 ${
-                            account.connected
-                              ? "bg-gradient-to-r from-red-300 to-red-400 text-white hover:shadow-lg"
-                              : "bg-gradient-to-r from-purple-300 to-pink-300 text-white hover:shadow-lg"
-                          }`}>
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <div className="text-purple-600">
+                              {account.icon}
+                            </div>
+                            <span className="text-xs sm:text-sm font-bold text-gray-900">{account.name}</span>
+                          </div>
+                          <button 
+                            onClick={async () => {
+                              if (account.connected) {
+                                await account.unlinkHandler();
+                              } else {
+                                await account.linkHandler();
+                              }
+                            }}
+                            className={`px-2 sm:px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ease-in-out transform hover:scale-105 ${
+                              account.connected
+                                ? "bg-gradient-to-r from-red-300 to-red-400 text-white hover:shadow-lg"
+                                : "bg-gradient-to-r from-purple-300 to-pink-300 text-white hover:shadow-lg"
+                            }`}
+                          >
                             {account.connected ? "Disconnect" : "Connect"}
                           </button>
                         </div>

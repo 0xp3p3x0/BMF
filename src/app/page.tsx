@@ -8,6 +8,12 @@ import { useState, useEffect } from "react";
 import { FullScreenLoader } from "@/components/ui/fullscreen-loader";
 import { Header } from "@/components/ui/header";
 import { CustomLoginModal } from "@/components/ui/custom-login-modal";
+import AboutSection from "@/components/landing/AboutSection";
+import GamesSection from "@/components/landing/GamesSection";
+import TokenomicsSection from "@/components/landing/TokenomicsSection";
+import RoadmapSection from "@/components/landing/RoadmapSection";
+import TeamSection from "@/components/landing/TeamSection";
+import Footer from "@/components/landing/Footer";
 
 function Home() {
   const { ready, authenticated } = usePrivy();
@@ -95,6 +101,14 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* All Landing Sections */}
+      <AboutSection />
+      <GamesSection />
+      <TokenomicsSection />
+      <RoadmapSection />
+      <TeamSection />
+      <Footer />
 
       <ToastContainer
         position="top-center"

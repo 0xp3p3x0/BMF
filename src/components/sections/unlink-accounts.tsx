@@ -2,6 +2,9 @@
 import { usePrivy } from "@privy-io/react-auth";
 import Section from "../reusables/section";
 import { showSuccessToast, showErrorToast } from "@/components/ui/custom-toast";
+import { FaApple, FaGithub, FaSpotify } from "react-icons/fa";
+import { SiX, SiDiscord, SiLinkedin, SiTiktok, SiTelegram, SiInstagram, SiLine, SiFarcaster } from "react-icons/si";
+import { PhoneIcon, WalletIcon, KeyIcon } from "@heroicons/react/16/solid";
 
 const UnlinkAccounts = () => {
   const {
@@ -22,6 +25,40 @@ const UnlinkAccounts = () => {
     unlinkTelegram,
     unlinkPasskey,
   } = usePrivy();
+
+  const getIconForType = (type: string) => {
+    const iconClass = "w-5 h-5";
+    switch (type) {
+      case "phone":
+        return <PhoneIcon className={iconClass} />;
+      case "wallet":
+        return <WalletIcon className={iconClass} />;
+      case "apple_oauth":
+        return <FaApple className={iconClass} />;
+      case "twitter_oauth":
+        return <SiX className={iconClass} />;
+      case "discord_oauth":
+        return <SiDiscord className={iconClass} />;
+      case "github_oauth":
+        return <FaGithub className={iconClass} />;
+      case "linkedin_oauth":
+        return <SiLinkedin className={iconClass} />;
+      case "tiktok_oauth":
+        return <SiTiktok className={iconClass} />;
+      case "line_oauth":
+        return <SiLine className={iconClass} />;
+      case "spotify_oauth":
+        return <FaSpotify className={iconClass} />;
+      case "instagram_oauth":
+        return <SiInstagram className={iconClass} />;
+      case "telegram":
+        return <SiTelegram className={iconClass} />;
+      case "passkey":
+        return <KeyIcon className={iconClass} />;
+      default:
+        return null;
+    }
+  };
 
   const availableActions = [];
 
@@ -69,6 +106,7 @@ const UnlinkAccounts = () => {
         acc.walletClientType !== "privy-v2";
       if (isExternal && address) {
         availableActions.push({
+          icon: getIconForType("wallet"),
           name: `Unlink Wallet (${address.slice(0, 6)}...)`,
           function: async () => {
             try {
@@ -87,6 +125,7 @@ const UnlinkAccounts = () => {
     if (acc.type === "apple_oauth") {
       const subject = acc.subject;
       availableActions.push({
+        icon: getIconForType("apple_oauth"),
         name: `Unlink Apple (${subject.slice(0, 6)}...)`,
         function: async () => {
           try {
@@ -103,6 +142,7 @@ const UnlinkAccounts = () => {
     if (acc.type === "twitter_oauth") {
       const subject = acc.subject;
       availableActions.push({
+        icon: getIconForType("twitter_oauth"),
         name: `Unlink Twitter (${subject.slice(0, 6)}...)`,
         function: async () => {
           try {
@@ -119,6 +159,7 @@ const UnlinkAccounts = () => {
     if (acc.type === "discord_oauth") {
       const subject = acc.subject;
       availableActions.push({
+        icon: getIconForType("discord_oauth"),
         name: `Unlink Discord (${subject.slice(0, 6)}...)`,
         function: async () => {
           try {
@@ -135,6 +176,7 @@ const UnlinkAccounts = () => {
     if (acc.type === "github_oauth") {
       const subject = acc.subject;
       availableActions.push({
+        icon: getIconForType("github_oauth"),
         name: `Unlink GitHub (${subject.slice(0, 6)}...)`,
         function: async () => {
           try {
@@ -151,6 +193,7 @@ const UnlinkAccounts = () => {
     if (acc.type === "linkedin_oauth") {
       const subject = acc.subject;
       availableActions.push({
+        icon: getIconForType("linkedin_oauth"),
         name: `Unlink LinkedIn (${subject.slice(0, 6)}...)`,
         function: async () => {
           try {
@@ -167,6 +210,7 @@ const UnlinkAccounts = () => {
     if (acc.type === "tiktok_oauth") {
       const subject = acc.subject;
       availableActions.push({
+        icon: getIconForType("tiktok_oauth"),
         name: `Unlink Tiktok (${subject.slice(0, 6)}...)`,
         function: async () => {
           try {
@@ -183,6 +227,7 @@ const UnlinkAccounts = () => {
     if (acc.type === "line_oauth") {
       const subject = acc.subject;
       availableActions.push({
+        icon: getIconForType("line_oauth"),
         name: `Unlink Line (${subject.slice(0, 6)}...)`,
         function: async () => {
           try {
@@ -199,6 +244,7 @@ const UnlinkAccounts = () => {
     if (acc.type === "spotify_oauth") {
       const subject = acc.subject;
       availableActions.push({
+        icon: getIconForType("spotify_oauth"),
         name: `Unlink Spotify (${subject.slice(0, 6)}...)`,
         function: async () => {
           try {
@@ -215,6 +261,7 @@ const UnlinkAccounts = () => {
     if (acc.type === "instagram_oauth") {
       const subject = acc.subject;
       availableActions.push({
+        icon: getIconForType("instagram_oauth"),
         name: `Unlink Instagram (${subject.slice(0, 6)}...)`,
         function: async () => {
           try {
@@ -232,6 +279,7 @@ const UnlinkAccounts = () => {
       const fid = acc.fid ?? null;
       if (fid !== null) {
         availableActions.push({
+          icon: getIconForType("farcaster"),
           name: `Unlink Farcaster (${fid})`,
           function: async () => {
             try {
@@ -252,6 +300,7 @@ const UnlinkAccounts = () => {
       if (telegramUserId) {
         availableActions.push({
           name: `Unlink Telegram (${telegramUserId.slice(0, 6)}...)`,
+          icon: getIconForType("telegram"),
           function: async () => {
             try {
               await unlinkTelegram(telegramUserId);
@@ -270,6 +319,7 @@ const UnlinkAccounts = () => {
         .credentialId;
       if (credentialId) {
         availableActions.push({
+          icon: getIconForType("passkey"),
           name: `Unlink Passkey (${credentialId.slice(0, 6)}...)`,
           function: async () => {
             try {
