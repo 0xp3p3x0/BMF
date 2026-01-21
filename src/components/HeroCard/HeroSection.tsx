@@ -538,12 +538,6 @@ const HeroSection = () => {
         }
       `}</style>
 
-      <nav className="navbar">
-        <a href="#" className="nav-cta-btn">
-          Get Started
-        </a>
-      </nav>
-
       <div className="section">
         <div className="video-visual" aria-hidden="true">
           <video className="video" autoPlay loop muted playsInline aria-label="background gradient animation">
