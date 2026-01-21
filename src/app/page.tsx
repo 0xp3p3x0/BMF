@@ -108,7 +108,6 @@ function Home() {
       <TokenomicsSection />
       <RoadmapSection />
       <TeamSection />
-      <Footer />
 
       <ToastContainer
         position="top-center"
