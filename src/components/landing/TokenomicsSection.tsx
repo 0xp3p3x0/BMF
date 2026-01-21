@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { motion } from "framer-motion";
 
 const fadeInUp = {
@@ -53,7 +54,7 @@ export default function TokenomicsSection() {
               <div className="relative w-full aspect-square max-w-md mx-auto">
                 <svg viewBox="0 0 200 200" className="w-full h-full transform -rotate-90">
                   {/* Generate pie slices */}
-                  {tokenBreakdown.reduce((acc, item, index) => {
+                  {tokenBreakdown.reduce<{ slices: React.ReactNode[]; currentAngle: number }>((acc, item, index) => {
                     const startAngle = acc.currentAngle;
                     const angle = (item.percentage / 100) * 360;
                     const endAngle = startAngle + angle;
