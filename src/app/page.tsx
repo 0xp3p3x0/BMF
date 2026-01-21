@@ -8,14 +8,6 @@ import { useState, useEffect } from "react";
 import { FullScreenLoader } from "@/components/ui/fullscreen-loader";
 import { Header } from "@/components/ui/header";
 import { CustomLoginModal } from "@/components/ui/custom-login-modal";
-import CreateAWallet from "@/components/sections/create-a-wallet";
-import FundWallet from "@/components/sections/fund-wallet";
-import LinkAccounts from "@/components/sections/link-accounts";
-import UnlinkAccounts from "@/components/sections/unlink-accounts";
-import WalletActions from "@/components/sections/wallet-actions";
-import SessionSigners from "@/components/sections/session-signers";
-import WalletManagement from "@/components/sections/wallet-management";
-import MFA from "@/components/sections/mfa";
 
 function Home() {
   const { ready, authenticated } = usePrivy();
@@ -103,28 +95,6 @@ function Home() {
           </div>
         </div>
       </section>
-
-      {/* Authenticated Content Section */}
-      {authenticated && (
-        <section className="w-full py-16 px-4 fade-in">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-2xl shadow-lg p-8">
-                <CreateAWallet />
-                <FundWallet />
-                <LinkAccounts />
-                <UnlinkAccounts />
-              </div>
-              <div className="bg-white rounded-2xl shadow-lg p-8">
-                <WalletActions />
-                <SessionSigners />
-                <WalletManagement />
-                <MFA />
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
 
       <ToastContainer
         position="top-center"

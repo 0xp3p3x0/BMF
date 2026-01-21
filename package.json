@@ -16,9 +16,10 @@
     "@solana-program/token": "0.6.0",
     "@solana/kit": "3.0.3",
     "bs58": "^6.0.0",
-    "next": "15.5.7",
+    "next": "16.1.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-icons": "^5.5.0",
     "react-toastify": "^11.0.5",
     "viem": "^2.37.6"
   },

@@ -103,7 +103,7 @@ export function CustomLoginModal({ isOpen, onClose }: CustomLoginModalProps) {
             <div className="space-y-6">
               <div>
                 <p className="text-center text-gray-600 mb-2">
-                  We've sent a verification code to:
+                  We&apos;ve sent a verification code to:
                 </p>
                 <p className="text-center font-semibold text-gray-900 break-all">{email}</p>
               </div>

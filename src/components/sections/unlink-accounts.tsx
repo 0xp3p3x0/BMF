@@ -9,7 +9,7 @@ const UnlinkAccounts = () => {
     unlinkEmail,
     unlinkPhone,
     unlinkWallet,
-    unlinkGoogle,
+
     unlinkTwitter,
     unlinkDiscord,
     unlinkGithub,
@@ -30,21 +30,21 @@ const UnlinkAccounts = () => {
   const accounts = user?.linkedAccounts ?? [];
 
   for (const acc of accounts) {
-    if (acc.type === "email" && user?.email) {
-      const address = user.email.address;
-      availableActions.push({
-        name: `Unlink Email (${address.slice(0, 6)}...)`,
-        function: async () => {
-          try {
-            await unlinkEmail(address);
-            showSuccessToast("Email account unlinked successfully");
-          } catch (error) {
-            console.log(error);
-            showErrorToast("Failed to unlink email account");
-          }
-        },
-      });
-    }
+    // if (acc.type === "email" && user?.email) {
+    //   const address = user.email.address;
+    //   availableActions.push({
+    //     name: `Unlink Email (${address.slice(0, 6)}...)`,
+    //     function: async () => {
+    //       try {
+    //         await unlinkEmail(address);
+    //         showSuccessToast("Email account unlinked successfully");
+    //       } catch (error) {
+    //         console.log(error);
+    //         showErrorToast("Failed to unlink email account");
+    //       }
+    //     },
+    //   });
+    // }
 
     if (acc.type === "phone" && user?.phone) {
       const phoneNumber = user.phone.number;
