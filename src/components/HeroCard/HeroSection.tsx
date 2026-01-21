@@ -2,6 +2,16 @@
 
 import React from "react";
 
+
+const heros = [
+  {
+    name: "Baby BTC Fighter",
+    imgSrc: "./heros/baby-btc-fighter.png",
+    altText: "Fantasy warrior",
+    type: ""
+  }
+
+]
 const HeroSection = () => {
   return (
     <section className="section">
@@ -554,7 +564,7 @@ const HeroSection = () => {
               <div className="mobile-visual">
                 <img
                   className="card-img"
-                  src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/dynamic-content-lockups-v2/assets/img-1.avif"
+                  src="./heros/baby-btc-fighter.png"
                   alt="Fantasy warrior"
                   loading="lazy"
                 />
@@ -571,7 +581,7 @@ const HeroSection = () => {
               <div className="mobile-visual">
                 <img
                   className="card-img"
-                  src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/dynamic-content-lockups-v2/assets/img-2.avif"
+                  src="./heros/baby-eth-fighter.png"
                   alt="Green haired ninja"
                   loading="lazy"
                 />
@@ -588,7 +598,7 @@ const HeroSection = () => {
               <div className="mobile-visual">
                 <img
                   className="card-img"
-                  src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/dynamic-content-lockups-v2/assets/img-3.avif"
+                  src="./heros/baby-sol-fighter.png"
                   alt="Female warrior in armor"
                   loading="lazy"
                 />
@@ -605,7 +615,7 @@ const HeroSection = () => {
               <div className="mobile-visual">
                 <img
                   className="card-img"
-                  src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/dynamic-content-lockups-v2/assets/img-4.avif"
+                  src="./heros/baby-avax-fighter.png"
                   alt="Agile warrior"
                   loading="lazy"
                 />
@@ -623,7 +633,7 @@ const HeroSection = () => {
               <div className="mobile-visual">
                 <img
                   className="card-img"
-                  src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/dynamic-content-lockups-v2/assets/img-4.avif"
+                  src="./heros/baby-bnb-fighter.png"
                   alt="Agile warrior"
                   loading="lazy"
                 />
@@ -641,7 +651,7 @@ const HeroSection = () => {
               <div className="mobile-visual">
                 <img
                   className="card-img"
-                  src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/dynamic-content-lockups-v2/assets/img-4.avif"
+                  src="./heros/baby-uni-fighter.png"
                   alt="Agile warrior"
                   loading="lazy"
                 />
@@ -655,11 +665,11 @@ const HeroSection = () => {
               </div>
             </div>
 
-             <div className="content content-7">
+            <div className="content content-7">
               <div className="mobile-visual">
                 <img
                   className="card-img"
-                  src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/dynamic-content-lockups-v2/assets/img-4.avif"
+                  src="./heros/baby-xrp-fighter.png"
                   alt="Agile warrior"
                   loading="lazy"
                 />
@@ -673,11 +683,11 @@ const HeroSection = () => {
               </div>
             </div>
 
-             <div className="content content-8">
+            <div className="content content-8">
               <div className="mobile-visual">
                 <img
                   className="card-img"
-                  src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/dynamic-content-lockups-v2/assets/img-4.avif"
+                  src="./heros/baby-dot-fighter.png"
                   alt="Agile warrior"
                   loading="lazy"
                 />
@@ -691,11 +701,11 @@ const HeroSection = () => {
               </div>
             </div>
 
-             <div className="content content-9">
+            <div className="content content-9">
               <div className="mobile-visual">
                 <img
                   className="card-img"
-                  src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/dynamic-content-lockups-v2/assets/img-4.avif"
+                  src="./heros/baby-doge-fighter.png"
                   alt="Agile warrior"
                   loading="lazy"
                 />
@@ -709,16 +719,16 @@ const HeroSection = () => {
               </div>
             </div>
 
-              <div className="content content-10">
+            <div className="content content-10">
               <div className="mobile-visual">
                 <img
                   className="card-img"
-                  src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/dynamic-content-lockups-v2/assets/img-4.avif"
+                  src="./heros/baby-link-fighter.png"
                   alt="Agile warrior"
                   loading="lazy"
                 />
               </div>
-              
+
               <div className="meta">
                 <h2 className="headline">
                   Rise as the <span className="text-highlight">Champion</span>
@@ -726,12 +736,12 @@ const HeroSection = () => {
                 <p className="desc">Lead your team to victory with unparalleled strength and unwavering determination.</p>
               </div>
             </div>
-            
-              <div className="content content-11">
+
+            <div className="content content-11">
               <div className="mobile-visual">
                 <img
                   className="card-img"
-                  src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/dynamic-content-lockups-v2/assets/img-4.avif"
+                  src="./heros/baby-ada-fighter.png"
                   alt="Agile warrior"
                   loading="lazy"
                 />
@@ -743,12 +753,12 @@ const HeroSection = () => {
                 <p className="desc">Lead your team to victory with unparalleled strength and unwavering determination.</p>
               </div>
             </div>
-            
-              <div className="content content-12">
+
+            <div className="content content-12">
               <div className="mobile-visual">
                 <img
                   className="card-img"
-                  src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/dynamic-content-lockups-v2/assets/img-4.avif"
+                  src="./heros/baby-matic-fighter.png"
                   alt="Agile warrior"
                   loading="lazy"
                 />
@@ -813,7 +823,7 @@ const HeroSection = () => {
                   loading="lazy"
                 />
               </div>
-               <div className="card card-7">
+              <div className="card card-7">
                 <img
                   className="card-img"
                   src="./heros/baby-xrp-fighter.png"
@@ -821,7 +831,7 @@ const HeroSection = () => {
                   loading="lazy"
                 />
               </div>
-               <div className="card card-8">
+              <div className="card card-8">
                 <img
                   className="card-img"
                   src="./heros/baby-dot-fighter.png"
@@ -829,7 +839,7 @@ const HeroSection = () => {
                   loading="lazy"
                 />
               </div>
-               <div className="card card-9">
+              <div className="card card-9">
                 <img
                   className="card-img"
                   src="./heros/baby-doge-fighter.png"
@@ -837,7 +847,7 @@ const HeroSection = () => {
                   loading="lazy"
                 />
               </div>
-                <div className="card card-10">
+              <div className="card card-10">
                 <img
                   className="card-img"
                   src="./heros/baby-link-fighter.png"
@@ -845,7 +855,7 @@ const HeroSection = () => {
                   loading="lazy"
                 />
               </div>
-                <div className="card card-11">
+              <div className="card card-11">
                 <img
                   className="card-img"
                   src="./heros/baby-ada-fighter.png"
@@ -853,17 +863,17 @@ const HeroSection = () => {
                   loading="lazy"
                 />
               </div>
-                <div className="card card-12">
+              <div className="card card-12">
                 <img
                   className="card-img"
                   src="./heros/baby-matic-fighter.png"
                   alt="Agile warrior"
                   loading="lazy"
                 />
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </section>
   );
