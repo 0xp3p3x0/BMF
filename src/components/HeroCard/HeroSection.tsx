@@ -552,7 +552,7 @@ const HeroSection = () => {
         <div className="video-visual" aria-hidden="true">
           <video className="video" autoPlay loop muted playsInline aria-label="background gradient animation">
             <source
-              src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/dynamic-content-lockups-v2/assets/bg-gradient-animation.mp4"
+              src="./bg-gradient-animation.mp4"
               type="video/mp4"
             />
           </video>
