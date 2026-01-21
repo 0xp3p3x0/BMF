@@ -86,7 +86,7 @@ const LinkAccounts = () => {
       case "farcaster":
         return handlers.linkFarcaster;
       case "telegram":
-        return () => handlers.linkTelegram({ launchParams: {} });
+        return handlers.linkTelegram;
       case "passkey":
         return handlers.linkPasskey;
       default:

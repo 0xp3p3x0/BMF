@@ -9,7 +9,6 @@ const UnlinkAccounts = () => {
     unlinkEmail,
     unlinkPhone,
     unlinkWallet,
-
     unlinkTwitter,
     unlinkDiscord,
     unlinkGithub,
