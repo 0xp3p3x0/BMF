@@ -137,8 +137,8 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
   return (
     <header
       className={`fixed top-0 left-0 w-full flex flex-row justify-between items-center px-4 sm:px-6 z-50 h-14 sm:h-[60px] ${authenticated === true
-          ? "bg-transparent border-none"
-          : "bg-transparent border-none"
+        ? "bg-transparent border-none"
+        : "bg-transparent border-none"
         }`}
     >
       {/* Left side - Logo/Title */}
@@ -150,21 +150,18 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
         )}
       </div>
 
-      {/* Center - Navigation (hidden on mobile) */}
-      {authenticated === true && (
-        <div className="hidden md:flex flex-row items-center gap-8 lg:gap-12">
-          {navItems.map(({ label, href }) => (
-            <Link
-              key={label}
-              href={href}
-              scroll={href.startsWith("#") ? true : undefined}
-              className="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-yellow-500 hover:bg-clip-text transition-all duration-300 ease-in-out font-bold text-xl sm:text-lg cursor-pointer pb-1 border-b-2 border-transparent hover:border-b-2 hover:border-pink-400 hover:scale-110 transform"
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
-      )}
+      <div className="hidden md:flex flex-row items-center gap-8 lg:gap-12">
+        {navItems.map(({ label, href }) => (
+          <Link
+            key={label}
+            href={href}
+            scroll={href.startsWith("#") ? true : undefined}
+            className="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-yellow-500 hover:bg-clip-text transition-all duration-300 ease-in-out font-bold text-xl sm:text-lg cursor-pointer pb-1 border-b-2 border-transparent hover:border-b-2 hover:border-pink-400 hover:scale-110 transform"
+          >
+            {label}
+          </Link>
+        ))}
+      </div>
 
       {/* Right side */}
       <div className="flex flex-row justify-end items-center gap-2 sm:gap-4 h-9 relative">
@@ -295,8 +292,8 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
                               }
                             }}
                             className={`px-2 sm:px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ease-in-out transform hover:scale-105 ${account.connected
-                                ? "bg-gradient-to-r from-red-300 to-red-400 text-white hover:shadow-lg"
-                                : "bg-gradient-to-r from-purple-300 to-pink-300 text-white hover:shadow-lg"
+                              ? "bg-gradient-to-r from-red-300 to-red-400 text-white hover:shadow-lg"
+                              : "bg-gradient-to-r from-purple-300 to-pink-300 text-white hover:shadow-lg"
                               }`}
                           >
                             {account.connected ? "Disconnect" : "Connect"}
