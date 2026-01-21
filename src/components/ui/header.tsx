@@ -36,12 +36,12 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const navItems = [
-    { label: "About", href: "#about" },
-    { label: "Games", href: "#games" },
+    { label: "About", href: "/#about" },
+    { label: "Games", href: "/#games" },
     { label: "Heros", href: "/heros" },
-    { label: "Tokenomics", href: "#tokenomics" },
-    { label: "Roadmap", href: "#roadmap" },
-    { label: "Team", href: "#team" },
+    { label: "Tokenomics", href: "/#tokenomics" },
+    { label: "Roadmap", href: "/#roadmap" },
+    { label: "Team", href: "/#team" },
 
   ];
 

@@ -24,7 +24,7 @@ function Home() {
   }
 
   return (
-    <div className={`${authenticated ? 'bg-gradient-to-br from-purple-200 via-pink-100 to-yellow-100 min-h-screen' : 'bg-gradient-to-br from-purple-200 via-pink-100 to-yellow-100 h-screen overflow-hidden'}`}>
+    <div className={`'bg-gradient-to-br from-purple-200 via-pink-100 to-yellow-100 min-h-screen' : 'bg-gradient-to-br from-purple-200 via-pink-100 to-yellow-100 h-screen overflow-hidden'}`}>
       <style>{`
         @keyframes fadeIn {
           from {
@@ -63,7 +63,7 @@ function Home() {
         }
       `}</style>
       <Header authenticated={authenticated} onLoginClick={() => setIsLoginModalOpen(true)} />
-      
+
       {/* Landing Page - Always Visible */}
       <section className="w-full flex flex-row justify-center items-center min-h-screen relative fade-in pt-[60px]">
         {/* Decorative blur circles */}
@@ -79,7 +79,7 @@ function Home() {
           priority
           className="opacity-80"
         />
-        
+
         <div className="z-10 flex flex-col items-center justify-center w-full h-full px-4">
           {/* Main title with animation */}
           <div className="slide-in-up text-center mb-12">
@@ -94,13 +94,13 @@ function Home() {
           </div>
         </div>
       </section>
-      
+
       <AboutSection />
       <GamesSection />
       <TokenomicsSection />
       <RoadmapSection />
       <TeamSection />
-
+      <Footer />
       <ToastContainer
         position="top-center"
         autoClose={5000}
