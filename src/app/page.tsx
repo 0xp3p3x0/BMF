@@ -3,7 +3,7 @@
 import { usePrivy } from "@privy-io/react-auth";
 import Image from "next/image";
 import { ToastContainer } from "react-toastify";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { FullScreenLoader } from "@/components/ui/fullscreen-loader";
 import { Header } from "@/components/ui/header";
@@ -18,13 +18,6 @@ import Footer from "@/components/landing/Footer";
 function Home() {
   const { ready, authenticated } = usePrivy();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    if (ready) {
-      setIsLoaded(true);
-    }
-  }, [ready]);
 
   if (!ready) {
     return <FullScreenLoader />;
@@ -101,8 +94,7 @@ function Home() {
           </div>
         </div>
       </section>
-
-      {/* All Landing Sections */}
+      
       <AboutSection />
       <GamesSection />
       <TokenomicsSection />

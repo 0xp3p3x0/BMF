@@ -14,12 +14,12 @@ interface HeaderProps {
 }
 
 export function Header({ authenticated, onLoginClick }: HeaderProps) {
-  const { 
-    user, 
-    logout, 
-    unlinkGithub, 
-    unlinkDiscord, 
-    unlinkTelegram, 
+  const {
+    user,
+    logout,
+    unlinkGithub,
+    unlinkDiscord,
+    unlinkTelegram,
   } = usePrivy();
   const linkHandlers = useLinkAccount({
     onSuccess: ({ linkMethod }) => {
@@ -35,7 +35,15 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
-  const navItems = ["About", "Games", "Tokenomics", "Roadmap", "Team"];
+  const navItems = [
+    { label: "About", href: "#about" },
+    { label: "Games", href: "#games" },
+    { label: "Heros", href: "/heros" },
+    { label: "Tokenomics", href: "#tokenomics" },
+    { label: "Roadmap", href: "#roadmap" },
+    { label: "Team", href: "#team" },
+
+  ];
 
   // Safe email getter
   const getEmailString = () => {
@@ -63,7 +71,7 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
 
   // Get linked accounts
   const linkedAccounts = user?.linkedAccounts || [];
-  
+
   // Check which social accounts are linked
   const twitterAccount = linkedAccounts.find((acc: any) => acc.type === "twitter");
   const discordAccount = linkedAccounts.find((acc: any) => acc.type === "discord");
@@ -71,8 +79,8 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
   const githubAccount = linkedAccounts.find((acc: any) => acc.type === "github");
 
   const socialAccounts = [
-    { 
-      name: "Discord", 
+    {
+      name: "Discord",
       icon: <SiDiscord className="w-5 h-5" />,
       connected: !!discordAccount,
       account: discordAccount,
@@ -88,8 +96,8 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
         }
       }
     },
-    { 
-      name: "Telegram", 
+    {
+      name: "Telegram",
       icon: <SiTelegram className="w-5 h-5" />,
       connected: !!telegramAccount,
       account: telegramAccount,
@@ -105,8 +113,8 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
         }
       }
     },
-    { 
-      name: "Github", 
+    {
+      name: "Github",
       icon: <FaGithub className="w-5 h-5" />,
       connected: !!githubAccount,
       account: githubAccount,
@@ -128,11 +136,10 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full flex flex-row justify-between items-center px-4 sm:px-6 z-50 h-14 sm:h-[60px] ${
-        authenticated === true
+      className={`fixed top-0 left-0 w-full flex flex-row justify-between items-center px-4 sm:px-6 z-50 h-14 sm:h-[60px] ${authenticated === true
           ? "bg-transparent border-none"
           : "bg-transparent border-none"
-      }`}
+        }`}
     >
       {/* Left side - Logo/Title */}
       <div className="flex flex-row items-center gap-2 h-[32px]">
@@ -146,14 +153,15 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
       {/* Center - Navigation (hidden on mobile) */}
       {authenticated === true && (
         <div className="hidden md:flex flex-row items-center gap-8 lg:gap-12">
-          {navItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+          {navItems.map(({ label, href }) => (
+            <Link
+              key={label}
+              href={href}
+              scroll={href.startsWith("#") ? true : undefined}
               className="text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-yellow-500 hover:bg-clip-text transition-all duration-300 ease-in-out font-bold text-xl sm:text-lg cursor-pointer pb-1 border-b-2 border-transparent hover:border-b-2 hover:border-pink-400 hover:scale-110 transform"
             >
-              {item}
-            </a>
+              {label}
+            </Link>
           ))}
         </div>
       )}
@@ -177,15 +185,16 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
             {/* Mobile Menu Dropdown */}
             {isMobileMenuOpen && (
               <div className="absolute right-0 top-full mt-2 w-48 bg-gradient-to-br from-purple-100 via-pink-100 to-yellow-100 rounded-2xl shadow-xl border-2 border-pink-300 py-2 z-50">
-                {navItems.map((item) => (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
+                {navItems.map(({ label, href }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    scroll={href.startsWith("#") ? true : undefined}
                     className="block px-4 py-2 text-base text-gray-700 hover:bg-white hover:text-transparent hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-yellow-500 hover:bg-clip-text font-bold transition-all duration-300 ease-in-out rounded-lg mx-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {item}
-                  </a>
+                    {label}
+                  </Link>
                 ))}
               </div>
             )}
@@ -277,7 +286,7 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
                             </div>
                             <span className="text-xs sm:text-sm font-bold text-gray-900">{account.name}</span>
                           </div>
-                          <button 
+                          <button
                             onClick={async () => {
                               if (account.connected) {
                                 await account.unlinkHandler();
@@ -285,11 +294,10 @@ export function Header({ authenticated, onLoginClick }: HeaderProps) {
                                 await account.linkHandler();
                               }
                             }}
-                            className={`px-2 sm:px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ease-in-out transform hover:scale-105 ${
-                              account.connected
+                            className={`px-2 sm:px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ease-in-out transform hover:scale-105 ${account.connected
                                 ? "bg-gradient-to-r from-red-300 to-red-400 text-white hover:shadow-lg"
                                 : "bg-gradient-to-r from-purple-300 to-pink-300 text-white hover:shadow-lg"
-                            }`}
+                              }`}
                           >
                             {account.connected ? "Disconnect" : "Connect"}
                           </button>
