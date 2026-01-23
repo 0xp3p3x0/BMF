@@ -139,19 +139,19 @@ export default function Footer() {
             <p className="text-purple-300 text-sm mb-4">
               Get the latest news about Baby Market Fighter
             </p>
-            <form className="space-y-3">
+
               <input
                 type="email"
                 placeholder="Enter your email"
                 className="w-full px-4 py-2 rounded-lg bg-purple-800 border border-purple-700 text-white placeholder-purple-400 focus:outline-none focus:border-pink-500 transition-colors"
               />
+              
               <button
-                type="submit"
-                className="w-full px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 font-bold transition-all duration-300 hover:scale-105"
+                className="w-full px-4 py-2 my-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 font-bold transition-all duration-300 hover:scale-105"
               >
                 Subscribe
               </button>
-            </form>
+      
           </div>
         </div>
 

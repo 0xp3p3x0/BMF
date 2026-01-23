@@ -19,7 +19,7 @@ function HerosPage() {
   return (
     <div className={`${authenticated ? "bg-gradient-to-br from-purple-200 via-pink-100 to-yellow-100 min-h-screen" : "bg-gradient-to-br from-purple-200 via-pink-100 to-yellow-100 min-h-screen"}`}>
       <Header authenticated={authenticated} onLoginClick={() => setIsLoginModalOpen(true)} />
-      <main className="pt-20 pb-12">
+      <main className="fade-in">
         <HeroSection />
       </main>
       <CustomLoginModal

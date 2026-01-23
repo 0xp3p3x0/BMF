@@ -2,13 +2,12 @@
 
 import React from "react";
 
-
-const heros = [
+const heroes = [
   {
     name: "Baby BTC Fighter",
     imgSrc: "./heros/baby-btc-fighter.png",
     altText: "Bitcoin Fighter",
-    heading: "Unleash Your",
+    heading: "Unleash",
     highlight: "Baby BTC",
     description: "Forged in the genesis block of Bitcoin, Baby BTC stands as the original protector of the blockchain. Endowed with exceptional defensive capabilities and timeless strength, this steadfast guardian has safeguarded the network from the very beginning. It is said that with every Bitcoin surge, Baby BTC's power intensifies even further."
   },
@@ -16,9 +15,9 @@ const heros = [
     name: "Baby ETH Fighter",
     imgSrc: "./heros/baby-eth-fighter.png",
     altText: "Ethereum Fighter",
-    heading: "Embark on Your",
+    heading: "Embark on ",
     highlight: "Baby ETH",
-    description: "Immerse Yourself in a World Where Legends Clash and Heroes Rise to Glory."
+    description: "The mystical mage of the crypto realm, Baby ETH wields the power of smart contracts and decentralized finance (DeFi) magic. When gas fees are low, Baby ETH becomes an unstoppable force. Master of the Ethereum ecosystem and sworn protector of all ERC-20 tokens."
   },
   {
     name: "Baby SOL Fighter",
@@ -26,7 +25,7 @@ const heros = [
     altText: "Solana Fighter",
     heading: "Master the",
     highlight: "Baby SOL",
-    description: "Harness powerful spells and enchantments to dominate your foes and change the course of battle."
+    description: "Baby SOL is the fastest entity in the entire blockchain universe. Capable of moving at light speed, Baby SOL executes actions with unparalleled precision. Trained in the ancient art of high-throughput combat, this samurai can process thousands of attacks in the blink of an eye.."
   },
   {
     name: "Baby AVAX Fighter",
@@ -34,15 +33,15 @@ const heros = [
     altText: "Avalanche Fighter",
     heading: "Rise as the",
     highlight: "Baby AVAX",
-    description: "Lead your team to victory with unparalleled strength and unwavering determination."
+    description: "Baby AVAX is a fierce warrior hailing from the frozen mountains, bringing the power of avalanches to every battle. With subnets under their command and blazing-fast finality, this red warrior is always prepared for combat."
   },
   {
     name: "Baby BNB Fighter",
     imgSrc: "./heros/baby-bnb-fighter.png",
     altText: "BNB Fighter",
-    heading: "Forge Your",
+    heading: "Forge",
     highlight: "Baby BNB",
-    description: "Craft legendary weapons and armor to dominate the battlefield."
+    description: "Born in the heart of the world's largest exchange, Baby BNB is a well-balanced warrior with no discernible weaknesses. This yellow ninja has mastered the art of token burns, using this power to grow stronger with each passing quarter."
   },
   {
     name: "Baby UNI Fighter",
@@ -50,7 +49,7 @@ const heros = [
     altText: "Uniswap Fighter",
     heading: "Command the",
     highlight: "Baby UNI",
-    description: "Wield the power of nature to crush your enemies."
+    description: "Baby UNI is the magical unicorn of decentralized exchanges, bringing the power of decentralized finance (DeFi) to the battlefield. With automated market making and liquidity pools, this pink unicorn can seamlessly transition between offense and defense in an instant."
   },
   {
     name: "Baby XRP Fighter",
@@ -58,7 +57,7 @@ const heros = [
     altText: "XRP Fighter",
     heading: "Strike with",
     highlight: "Baby XRP",
-    description: "Move faster than the eye can see and strike with devastating precision."
+    description: "Baby XRP is the noble knight of instant transactions. Having endured legal challenges, Baby XRP emerged stronger than ever. With lightning-fast transfers and unwavering resolve, this blue warrior safeguards the realm of cross-border payments."
   },
   {
     name: "Baby DOT Fighter",
@@ -66,7 +65,7 @@ const heros = [
     altText: "Polkadot Fighter",
     heading: "Master the",
     highlight: "Baby DOT",
-    description: "Connect and coordinate attacks across multiple dimensions."
+    description: "Baby DOT is the connector of all blockchains, specializing in uniting networks. With the power of parachains and cross-chain communication, this pink tech genius can seamlessly link with any ally to execute powerful combo attacks."
   },
   {
     name: "Baby DOGE Fighter",
@@ -74,7 +73,7 @@ const heros = [
     altText: "Dogecoin Fighter",
     heading: "Unleash",
     highlight: "Baby DOGE",
-    description: "Harness the meme energy to overwhelm your opponents."
+    description: "Baby DOGE is a powerful and charismatic figure in the meme coin world. Embodying the spirit of unpredictability and community-driven energy, this pup becomes legendary whenever the community rallies behind it."
   },
   {
     name: "Baby LINK Fighter",
@@ -82,7 +81,7 @@ const heros = [
     altText: "Chainlink Fighter",
     heading: "Bridge",
     highlight: "Baby LINK",
-    description: "Connect worlds and summon allies from across the multiverse."
+    description: "Baby LINK is the all-seeing oracle of the crypto world, possessing unparalleled knowledge. With access to real-world data and price feeds, this blue entity can anticipate enemy moves before they are even conceived."
   },
   {
     name: "Baby ADA Fighter",
@@ -90,21 +89,21 @@ const heros = [
     altText: "Cardano Fighter",
     heading: "Strategize",
     highlight: "Baby ADA",
-    description: "Plan every move with mathematical precision and execute flawlessly."
+    description: "Baby ADA is the wisest entity in the land, known for taking the time to meticulously plan each attack. With peer-reviewed combat strategies and scientific precision, this sage never makes a move without thorough research and analysis."
   },
   {
     name: "Baby MATIC Fighter",
     imgSrc: "./heros/baby-matic-fighter.png",
     altText: "Polygon Fighter",
-    heading: "Scale Your",
+    heading: "Scale",
     highlight: "Baby MATIC",
-    description: "Multiply your strength and attack from all angles simultaneously."
+    description: "Baby MATIC is the purple speedster who scales to infinity. Moving at Layer 2 speeds across the battlefield, this entity steps in to resolve congestion on the main chain, delivering lightning-fast performance when needed most."
   }
 ];
-  
+
 const HeroSection = () => {
   return (
-    <section className="section">
+    <section className="section fade-in">
       <style jsx global>{`
         @layer library, reset, base, demo;
         @import "https://unpkg.com/open-props@2.0.0-beta.5" layer(library);
@@ -139,65 +138,7 @@ const HeroSection = () => {
         }
 
         @layer demo {
-          .navbar {
-            min-block-size: var(--nav-block-size);
-            display: grid;
-            position: fixed;
-            inset-block-start: 0;
-            inset-inline: 0;
-            background-color: white;
-            z-index: var(--layer-3);
-            place-items: center end;
-            padding-block: var(--size-3);
-            padding-inline: var(--size-5);
-
-            @media (width >=600px) {
-              padding-inline: 6dvi;
-            }
-          }
-
-          .nav-cta-btn {
-            font-size: var(--font-size-1);
-            font-weight: var(--font-weight-7);
-            inline-size: max-content;
-            white-space: nowrap;
-            text-decoration: none;
-            padding-block: var(--size-3);
-            padding-inline: var(--size-7);
-            border: var(--border-size-2) solid transparent;
-            color: black;
-            position: relative;
-            isolation: isolate;
-
-            background: linear-gradient(white, white) padding-box,
-              var(--brand-gradient) border-box;
-            border-radius: var(--radius-6);
-            overflow: hidden;
-
-            &::before {
-              content: "";
-              display: block;
-              position: absolute;
-              inset: 0;
-
-              background: var(--brand-gradient);
-              mix-blend-mode: screen;
-            }
-
-            &:hover {
-              color: white;
-
-              &::before {
-                background: var(--brand-gradient) padding-box,
-                  var(--brand-gradient) border-box;
-                background-repeat: no-repeat;
-                background-size: contain;
-                mix-blend-mode: normal;
-                z-index: -1;
-              }
-            }
-          }
-
+        
           .section {
             --section-block-size: max(400px, 100dvb);
             display: grid;
@@ -258,7 +199,7 @@ const HeroSection = () => {
             @media (width >=960px) {
               padding: var(--size-10);
               min-block-size: 100cqb;
-              place-items: center end;
+              place-items: center;
             }
 
             @media (width < 960px) {
@@ -402,11 +343,11 @@ const HeroSection = () => {
 
 
           .content-1 {
-            --_text-gradient: linear-gradient(227deg, #1400c7 0%, #00bbff 100%);
+            --_text-gradient: linear-gradient(227deg, #F7931A 0%, #FDB62C 100%);
           }
 
           .content-2 {
-            --_text-gradient: linear-gradient(227deg, #28dc28 0%, #00bbff 100%);
+            --_text-gradient: linear-gradient(227deg, #627EEA 0%, #A29BFE 100%);
           }
 
           .content-3 {
@@ -414,39 +355,39 @@ const HeroSection = () => {
           }
 
           .content-4 {
-            --_text-gradient: linear-gradient(227deg, #b800b1 0%, #f50000 100%);
+            --_text-gradient: linear-gradient(227deg, #E84142 0%, #F84D4D 100%);
           }
 
           .content-5 {
-            --_text-gradient: linear-gradient(227deg, #0052ff 0%, #6ddcff 100%);
+            --_text-gradient: linear-gradient(227deg, #F3BA2F 0%, #FFEAA7 100%);
           }
 
           .content-6 {
-            --_text-gradient: linear-gradient(227deg, #00c6ff 0%, #0072ff 100%);
+            --_text-gradient: linear-gradient(227deg, #FF007A 0%, #FF6AAA 100%);
           }
           
           .content-7 {
-            --_text-gradient: linear-gradient(227deg, #00c6ff 0%, #0072ff 100%);
+            --_text-gradient: linear-gradient(227deg, #23292F 0%, #0066FF 100%);
           }
           
           .content-8 {
-            --_text-gradient: linear-gradient(227deg, #00c6ff 0%, #0072ff 100%);
+            --_text-gradient: linear-gradient(227deg, #E6007A 0%, #FFB3D9 100%);
           }
           
           .content-9 {
-            --_text-gradient: linear-gradient(227deg, #00c6ff 0%, #0072ff 100%);
+            --_text-gradient: linear-gradient(227deg, #BA9F33 0%, #F3D156 100%);
           }
           
           .content-10 {
-            --_text-gradient: linear-gradient(227deg, #00c6ff 0%, #0072ff 100%);
+            --_text-gradient: linear-gradient(227deg, #2F5233 0%, #5DB5E8 100%);
           }
           
           .content-11 {
-            --_text-gradient: linear-gradient(227deg, #00c6ff 0%, #0072ff 100%);
+            --_text-gradient: linear-gradient(227deg, #0033A0 0%, #0050A0 100%);
           }
           
           .content-12 {
-            --_text-gradient: linear-gradient(227deg, #00c6ff 0%, #0072ff 100%);
+            --_text-gradient: linear-gradient(227deg, #8247E5 0%, #B19CD9 100%);
           }
           
 
@@ -456,6 +397,8 @@ const HeroSection = () => {
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-fill-color: transparent;
+            font-size: 1.3em;
+            font-weight: var(--font-weight-9);
           }
         }
 
@@ -650,317 +593,38 @@ const HeroSection = () => {
 
         <div className="section-wrapper">
           <div className="content-wrapper">
-            <div className="content content-1">
-              <div className="mobile-visual">
-                <img
-                  className="card-img"
-                  src="./heros/baby-btc-fighter.png"
-                  alt="Fantasy warrior"
-                  loading="lazy"
-                />
+            {heroes.map((hero, index) => (
+              <div key={hero.name} className={`content content-${index + 1}`}>
+                <div className="mobile-visual">
+                  <img
+                    className="card-img"
+                    src={hero.imgSrc}
+                    alt={hero.altText}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="meta">
+                  <h2 className="headline">
+                    {hero.heading} <span className="text-highlight">{hero.highlight}</span>
+                  </h2>
+                  <p className="desc">{hero.description}</p>
+                </div>
               </div>
-              <div className="meta">
-                <h2 className="headline">
-                  Unleash Your <span className="text-highlight">Inner Warrior</span>
-                </h2>
-                <p className="desc">Join the battle and conquer the arena with unmatched skill and strategy.</p>
-              </div>
-            </div>
-
-            <div className="content content-2">
-              <div className="mobile-visual">
-                <img
-                  className="card-img"
-                  src="./heros/baby-eth-fighter.png"
-                  alt="Green haired ninja"
-                  loading="lazy"
-                />
-              </div>
-              <div className="meta">
-                <h2 className="headline">
-                  Embark on Your <span className="text-highlight">Legendary Journey</span>
-                </h2>
-                <p className="desc">Immerse Yourself in a World Where Legends Clash and Heroes Rise to Glory.</p>
-              </div>
-            </div>
-
-            <div className="content content-3">
-              <div className="mobile-visual">
-                <img
-                  className="card-img"
-                  src="./heros/baby-sol-fighter.png"
-                  alt="Female warrior in armor"
-                  loading="lazy"
-                />
-              </div>
-              <div className="meta">
-                <h2 className="headline">
-                  Master the <span className="text-highlight">Art of Magic</span>
-                </h2>
-                <p className="desc">Harness powerful spells and enchantments to dominate your foes and change the course of battle.</p>
-              </div>
-            </div>
-
-            <div className="content content-4">
-              <div className="mobile-visual">
-                <img
-                  className="card-img"
-                  src="./heros/baby-avax-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="meta">
-                <h2 className="headline">
-                  Rise as the <span className="text-highlight">Champion</span>
-                </h2>
-                <p className="desc">Lead your team to victory with unparalleled strength and unwavering determination.</p>
-              </div>
-            </div>
-
-            <div className="content content-5">
-              <div className="mobile-visual">
-                <img
-                  className="card-img"
-                  src="./heros/baby-bnb-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="meta">
-                <h2 className="headline">
-                  Rise as the <span className="text-highlight">Champion</span>
-                </h2>
-                <p className="desc">Lead your team to victory with unparalleled strength and unwavering determination.</p>
-              </div>
-            </div>
-
-            <div className="content content-6">
-              <div className="mobile-visual">
-                <img
-                  className="card-img"
-                  src="./heros/baby-uni-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="meta">
-                <h2 className="headline">
-                  Rise as the <span className="text-highlight">Champion</span>
-                </h2>
-                <p className="desc">Lead your team to victory with unparalleled strength and unwavering determination.</p>
-              </div>
-            </div>
-
-            <div className="content content-7">
-              <div className="mobile-visual">
-                <img
-                  className="card-img"
-                  src="./heros/baby-xrp-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="meta">
-                <h2 className="headline">
-                  Rise as the <span className="text-highlight">Champion</span>
-                </h2>
-                <p className="desc">Lead your team to victory with unparalleled strength and unwavering determination.</p>
-              </div>
-            </div>
-
-            <div className="content content-8">
-              <div className="mobile-visual">
-                <img
-                  className="card-img"
-                  src="./heros/baby-dot-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="meta">
-                <h2 className="headline">
-                  Rise as the <span className="text-highlight">Champion</span>
-                </h2>
-                <p className="desc">Lead your team to victory with unparalleled strength and unwavering determination.</p>
-              </div>
-            </div>
-
-            <div className="content content-9">
-              <div className="mobile-visual">
-                <img
-                  className="card-img"
-                  src="./heros/baby-doge-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="meta">
-                <h2 className="headline">
-                  Rise as the <span className="text-highlight">Champion</span>
-                </h2>
-                <p className="desc">Lead your team to victory with unparalleled strength and unwavering determination.</p>
-              </div>
-            </div>
-
-            <div className="content content-10">
-              <div className="mobile-visual">
-                <img
-                  className="card-img"
-                  src="./heros/baby-link-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="meta">
-                <h2 className="headline">
-                  Rise as the <span className="text-highlight">Champion</span>
-                </h2>
-                <p className="desc">Lead your team to victory with unparalleled strength and unwavering determination.</p>
-              </div>
-            </div>
-
-            <div className="content content-11">
-              <div className="mobile-visual">
-                <img
-                  className="card-img"
-                  src="./heros/baby-ada-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-              <div className="meta">
-                <h2 className="headline">
-                  Rise as the <span className="text-highlight">Champion</span>
-                </h2>
-                <p className="desc">Lead your team to victory with unparalleled strength and unwavering determination.</p>
-              </div>
-            </div>
-
-            <div className="content content-12">
-              <div className="mobile-visual">
-                <img
-                  className="card-img"
-                  src="./heros/baby-matic-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-              <div className="meta">
-                <h2 className="headline">
-                  Rise as the <span className="text-highlight">Champion</span>
-                </h2>
-                <p className="desc">Lead your team to victory with unparalleled strength and unwavering determination.</p>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className="visual">
             <div className="card-wrapper">
-              <div className="card card-1">
-                <img
-                  className="card-img"
-                  src="./heros/baby-btc-fighter.png"
-                  alt="Fantasy warrior"
-                  loading="lazy"
-                />
-              </div>
-              <div className="card card-2">
-                <img
-                  className="card-img"
-                  src="./heros/baby-eth-fighter.png"
-                  alt="Green haired ninja"
-                  loading="lazy"
-                />
-              </div>
-              <div className="card card-3">
-                <img
-                  className="card-img"
-                  src="./heros/baby-sol-fighter.png"
-                  alt="Female warrior in armor"
-                  loading="lazy"
-                />
-              </div>
-              <div className="card card-4">
-                <img
-                  className="card-img"
-                  src="./heros/baby-avax-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="card card-5">
-                <img
-                  className="card-img"
-                  src="./heros/baby-bnb-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-              <div className="card card-6">
-                <img
-                  className="card-img"
-                  src="./heros/baby-uni-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-              <div className="card card-7">
-                <img
-                  className="card-img"
-                  src="./heros/baby-xrp-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-              <div className="card card-8">
-                <img
-                  className="card-img"
-                  src="./heros/baby-dot-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-              <div className="card card-9">
-                <img
-                  className="card-img"
-                  src="./heros/baby-doge-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-              <div className="card card-10">
-                <img
-                  className="card-img"
-                  src="./heros/baby-link-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-              <div className="card card-11">
-                <img
-                  className="card-img"
-                  src="./heros/baby-ada-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
-              <div className="card card-12">
-                <img
-                  className="card-img"
-                  src="./heros/baby-matic-fighter.png"
-                  alt="Agile warrior"
-                  loading="lazy"
-                />
-              </div>
+              {heroes.map((hero, index) => (
+                <div key={`card-${hero.name}`} className={`card card-${index + 1}`}>
+                  <img
+                    className="card-img"
+                    src={hero.imgSrc}
+                    alt={hero.altText}
+                    loading="lazy"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
