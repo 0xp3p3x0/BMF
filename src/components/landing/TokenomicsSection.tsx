@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: { duration: 0.6 }
   }
@@ -22,11 +22,13 @@ const tokenBreakdown = [
 
 export default function TokenomicsSection() {
   return (
-    <section 
-      id="tokenomics" 
-      className="w-full py-16 px-6 md:px-12 lg:px-24 bg-gradient-to-br from-yellow-50 via-pink-50 to-purple-50"
+    <section
+      id="tokenomics"
+      className="w-full py-8 px-6 md:px-12 lg:px-24 "
     >
+      
       <div className="max-w-7xl mx-auto">
+        
         {/* Header */}
         <motion.div
           initial="hidden"
@@ -58,17 +60,17 @@ export default function TokenomicsSection() {
                     const startAngle = acc.currentAngle;
                     const angle = (item.percentage / 100) * 360;
                     const endAngle = startAngle + angle;
-                    
+
                     const startRad = (startAngle * Math.PI) / 180;
                     const endRad = (endAngle * Math.PI) / 180;
-                    
+
                     const x1 = 100 + 80 * Math.cos(startRad);
                     const y1 = 100 + 80 * Math.sin(startRad);
                     const x2 = 100 + 80 * Math.cos(endRad);
                     const y2 = 100 + 80 * Math.sin(endRad);
-                    
+
                     const largeArc = angle > 180 ? 1 : 0;
-                    
+
                     acc.slices.push(
                       <motion.path
                         key={index}
@@ -84,14 +86,14 @@ export default function TokenomicsSection() {
                         className="cursor-pointer"
                       />
                     );
-                    
+
                     acc.currentAngle = endAngle;
                     return acc;
                   }, { slices: [], currentAngle: 0 }).slices}
-                  
+
                   {/* Center circle with cute baby */}
                   <circle cx="100" cy="100" r="30" fill="white" />
-                 
+
                 </svg>
               </div>
             </div>
@@ -116,7 +118,7 @@ export default function TokenomicsSection() {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <div 
+                    <div
                       className="w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-md"
                       style={{ backgroundColor: item.color + "33" }}
                     >
@@ -132,21 +134,6 @@ export default function TokenomicsSection() {
                 </div>
               </motion.div>
             ))}
-
-            {/* Tax Explanation */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="mt-8 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl p-6 border-2 border-purple-300"
-            >
-              <h4 className="font-black text-purple-600 mb-3 text-lg">Transaction Tax</h4>
-              <p className="text-gray-700 leading-relaxed">
-                4-6% tax on each transaction goes to liquidity, marketing, burns, and game reward pools. 
-                This ensures sustainable growth and keeps the ecosystem healthy!
-              </p>
-            </motion.div>
           </motion.div>
         </div>
       </div>

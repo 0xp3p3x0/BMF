@@ -23,8 +23,8 @@ const scaleIn = {
 export default function AboutSection() {
   return (
     <section 
-      id="about" 
-      className="w-full py-16 px-6 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50 via-pink-50 to-yellow-50 overflow-hidden"
+      id="story" 
+      className="w-full py-16 sm:py-20 px-6 md:px-12 lg:px-24 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -34,117 +34,79 @@ export default function AboutSection() {
           variants={fadeInUp}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-gradient-to-r from-purple-600 via-pink-600 to-yellow-600 bg-clip-text mb-4">
-            Babies Fight Market Chaos – You Play & Win!
+          <h2
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-gradient-to-r from-fuchsia-500 via-pink-500 to-amber-400 bg-clip-text mb-4 drop-shadow-lg"
+            style={{ fontFamily: "'Fredoka One', 'Comic Sans MS', cursive" }}
+          >
+            Our Story
           </h2>
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-800 mt-5 max-w-3xl mx-auto font-bold" style={{ fontFamily: "'Fredoka One', 'Comic Sans MS', cursive" }}>
+            Welcome to the tale of Baby Market Fighter—told loud, proud, and playful for every degen baby in the arena.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left: Illustration */}
+        <div className="grid md:grid-cols-2 gap-10 lg:gap-14 items-center">
+          {/* Left: Responsive video viewer */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={scaleIn}
-            className="relative"
+            className="relative w-full md:w-[95%] lg:w-full"
           >
-            <div className="relative w-full aspect-square bg-white rounded-3xl shadow-2xl p-8 flex items-center justify-center border-4 border-purple-200">
-              {/* Placeholder for baby punching chart illustration */}
-              <div className="relative w-full h-full">
-                {/* Price Chart Background - Wiggly */}
-                <svg viewBox="0 0 200 200" className="w-full h-full">
-                  {/* Red line (dump) */}
-                  <path
-                    d="M 20 80 Q 60 40, 100 100 T 180 120"
-                    fill="none"
-                    stroke="#ef4444"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    className="animate-pulse"
-                  />
-                  {/* Green line (pump) */}
-                  <path
-                    d="M 20 120 Q 60 80, 100 60 T 180 40"
-                    fill="none"
-                    stroke="#10b981"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    className="animate-pulse"
-                    style={{ animationDelay: "0.5s" }}
-                  />
-                  {/* Baby fighter punching */}
-                  <circle cx="100" cy="100" r="30" fill="#fbbf24" opacity="0.3" />
-                  <text x="100" y="110" fontSize="50" textAnchor="middle">👶</text>
-                </svg>
+            <div className="relative overflow-hidden rounded-4xl shadow-3xl ring-4 ring-pink-300/80 bg-gradient-to-br from-fuchsia-100 via-pink-50 to-amber-100">
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-white/30 via-transparent to-pink-100/30" />
+              <div className="relative aspect-video sm:aspect-[16/9] lg:aspect-[16/9]">
+                <video
+                  className="absolute inset-0 h-full w-full object-cover"
+                  controls
+                  poster="/background.jpg"
+                >
+                  <source src="/intro.webm" type="video/webm" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div className="absolute left-4 top-4 rounded-full bg-white/80 px-3 py-1 text-xs font-black text-pink-600" style={{ fontFamily: "'Fredoka One', 'Comic Sans MS', cursive" }}>
+                Baby Fighter TV
               </div>
             </div>
-           
           </motion.div>
 
-          {/* Right: Text Content */}
+          {/* Right: Story Content */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="space-y-6"
+            className="space-y-5 text-gray-900 bg-white/40 backdrop-blur-lg rounded-3xl p-6 sm:p-8 shadow-2xl ring-2 ring-pink-200/60"
           >
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              Crypto trading is complex, stressful, unpredictable, emotional, and hard for normal people.
+            <p className="text-2xl md:text-3xl font-black text-pink-500 drop-shadow" style={{ fontFamily: "'Fredoka One', 'Comic Sans MS', cursive" }}>
+              The Great Baby Chain Rumble
             </p>
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              But short-term market movements are fast, chaotic, simple in pattern — perfect for gameplay.
-            </p>
-            <p className="text-lg md:text-xl font-bold text-purple-600 leading-relaxed">
-              Traders overthink. Babies don't think — they just REACT.
-            </p>
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              So we made babies fight using live market data.
-            </p>
-
-            {/* Key Points */}
-            <div className="space-y-4 mt-8">
-              <div className="flex items-start gap-4 bg-white p-4 rounded-2xl shadow-md hover:shadow-xl transition-shadow">
-                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-2xl">
-                  ⚡
-                </div>
-                <div>
-                  <h4 className="font-bold text-purple-600 mb-1">Real-Time Market Data</h4>
-                  <p className="text-sm text-gray-600">Live crypto prices power every game move</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4 bg-white p-4 rounded-2xl shadow-md hover:shadow-xl transition-shadow">
-                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-pink-400 to-yellow-400 rounded-full flex items-center justify-center text-2xl">
-                  🎮
-                </div>
-                <div>
-                  <h4 className="font-bold text-purple-600 mb-1">Simple Gameplay, Big Rewards</h4>
-                  <p className="text-sm text-gray-600">Easy to play, earn tokens while having fun</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 bg-white p-4 rounded-2xl shadow-md hover:shadow-xl transition-shadow">
-                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-yellow-400 to-purple-400 rounded-full flex items-center justify-center text-2xl">
-                  💰
-                </div>
-                <div>
-                  <h4 className="font-bold text-purple-600 mb-1">Play-to-Earn Ecosystem</h4>
-                  <p className="text-sm text-gray-600">Win battles, climb leaderboards, get rewards</p>
-                </div>
-              </div>
+            <div className="space-y-3 text-base sm:text-lg md:text-2xl leading-relaxed" style={{ fontFamily: "'Fredoka One', 'Comic Sans MS', cursive" }}>
+              <p className="text-2xl md:text-3xl font-black text-fuchsia-600">Welcome to The Great Baby Chain Rumble.</p>
+              <p>
+                Baby Market Fighter watched the house of cards crumble and bet on the chain with the toughest babies who survived it all.
+              </p>
+              <p className="text-xl sm:text-2xl md:text-3xl font-black text-amber-500">👑 That baby was Baby BNB.</p>
+              <p>So Baby Market Fighter chose BSC.</p>
             </div>
-
-            {/* CTA Button */}
-            <Link href="/games">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-8 px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 text-white font-black text-lg rounded-full shadow-xl hover:shadow-2xl transition-all"
+            <div className="flex flex-wrap gap-3 pt-3">
+              <Link
+                href="#"
+                className="rounded-full bg-gradient-to-r from-fuchsia-500 to-pink-500 text-white px-6 py-3 text-base font-black shadow-lg hover:shadow-xl transition-transform hover:-translate-y-0.5"
+                style={{ fontFamily: "'Fredoka One', 'Comic Sans MS', cursive" }}
               >
-                Play Now
-              </motion.button>
-            </Link>
+                Watch Full Trailer
+              </Link>
+              <Link
+                href="#tokenomics"
+                className="rounded-full bg-gradient-to-r from-amber-400 to-orange-400 text-white px-6 py-3 text-base font-black shadow-lg hover:shadow-xl transition-transform hover:-translate-y-0.5"
+                style={{ fontFamily: "'Fredoka One', 'Comic Sans MS', cursive" }}
+              >
+                Explore Tokenomics
+              </Link>
+            </div>
           </motion.div>
         </div>
       </div>

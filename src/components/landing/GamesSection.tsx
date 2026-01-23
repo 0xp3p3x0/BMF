@@ -39,7 +39,7 @@ export default function GamesSection() {
   return (
     <section 
       id="games" 
-      className="w-full py-16 px-6 md:px-12 lg:px-24 bg-white"
+      className="w-full py-16 px-6 md:px-12 lg:px-24"
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -106,7 +106,7 @@ export default function GamesSection() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-[#9a66f5] to-[#FFC671] text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all"
                 >
                   Play Now
                 </motion.button>

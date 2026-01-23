@@ -6,7 +6,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-gradient-to-r from-purple-900 via-pink-900 to-purple-900 text-white pt-16 pb-8">
+    <footer
+      className="w-full text-white pt-16 pb-8"
+      style={{
+        backgroundImage:
+          "linear-gradient(90deg, rgba(76, 29, 149, 0.5), rgba(190, 24, 93, 0.6), rgba(76, 29, 149, 0.5))",
+      }}
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">

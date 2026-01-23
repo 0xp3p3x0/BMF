@@ -1,453 +1,270 @@
 "use client";
-import { useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
-const roadmapPhases = [
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+
+type Status = "Planned" | "In Progress" | "Completed";
+
+type Milestone = {
+  id: string;
+  title: string;
+  year: string;
+  status: Status;
+  items: { text: string; done: boolean }[];
+  position: { top: string; left: string };
+};
+
+const milestones: Milestone[] = [
   {
+    id: "q1",
+    title: "Genesis Launch",
     year: "Q1 2026",
-    title: "Phase 1: Launch & Foundation",
-    description: "Website, socials, and first mini-games launch. Token debuts on BNB. Community building begins with Discord and Telegram.",
-    image: "/roadmaps/roadmap-1.png",
+    status: "In Progress",
+    items: [
+      { text: "Fair launch on BSC", done: true },
+      { text: "Website & Privy wallet integration", done: true },
+      { text: "First three mini-games live", done: true },
+      { text: "Community building on X & Telegram", done: false },
+    ],
+    position: { top: "21%", left: "21%" },
   },
   {
+    id: "q2",
+    title: "Planned",
     year: "Q2 2026",
-    title: "Phase 2: Expand Games",
-    description: "Release additional mini-games and launch exclusive Baby Fighters collection. First tournaments go live with prizes.",
-    image: "/roadmaps/roadmap-2.png",
+    status: "Planned",
+    items: [
+      { text: "NFT Baby Fighters mint", done: false },
+      { text: "Additional mini-games", done: false },
+      { text: "In-game $BMF rewards", done: false },
+      { text: "First tournaments", done: false },
+    ],
+    position: { top: "27%", left: "70%" },
   },
   {
+    id: "q3",
+    title: "Growth Phase",
     year: "Q3 2026",
-    title: "Phase 3: Staking & Mobile",
-    description: "Staking platform launches allowing holders to earn passive income. Major CEX listings and mobile app beta release.",
-    image: "/roadmaps/roadmap-3.png",
+    status: "Planned",
+    items: [
+      { text: "Staking & yield farming", done: false },
+      { text: "CEX listings target", done: false },
+      { text: "KOL partnerships", done: false },
+      { text: "Cross-promotions", done: false },
+    ],
+    position: { top: "52%", left: "19%" },
   },
   {
+    id: "q4",
+    title: "Community Takeover",
     year: "Q4 2026",
-    title: "Phase 4: Ecosystem Growth",
-    description: "Cross-chain bridge integration, advanced leaderboards, guild system, and partnerships with major gaming platforms.",
-    image: "/roadmaps/roadmap-4.png",
-  },
-  {
-    year: "Q1 2027",
-    title: "Phase 5: World Domination",
-    description: "Babies Fight Market Chaos becomes the leading play-to-earn platform. Global tournaments, metaverse integration, and beyond.",
-    image: "/roadmaps/roadmap-5.png",
+    status: "Planned",
+    items: [
+      { text: "DAO governance launch", done: false },
+      { text: "User-generated content tools", done: false },
+      { text: "Major ecosystem integrations", done: false },
+    ],
+    position: { top: "71%", left: "62%" },
   },
 ];
 
+const statusStyles: Record<Status, string> = {
+  Planned: "bg-slate-200 text-slate-700",
+  "In Progress": "bg-amber-200 text-amber-800",
+  Completed: "bg-emerald-200 text-emerald-800",
+};
+
+const floatVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: (i: number) => ({
+    opacity: 0.6,
+    y: [0, -8, 0],
+    transition: {
+      delay: i * 0.2,
+      duration: 4,
+      repeat: Infinity,
+      ease: "easeInOut" as const,
+    },
+  }),
+} as const;
+
+const dialogVariants = {
+  hidden: { opacity: 0, scale: 0.9, y: 8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { type: "spring" as const, stiffness: 260, damping: 18 },
+  },
+  exit: { opacity: 0, scale: 0.95, y: 6, transition: { duration: 0.15 } },
+} as const;
+
 export default function RoadmapSection() {
-  useEffect(() => {
-    // Custom pagination bullet renderer
-    const paginationBullets = document.querySelectorAll(".swiper-pagination-bullet");
-    paginationBullets.forEach((bullet, index) => {
-      bullet.textContent = roadmapPhases[index].year;
-    });
-  }, []);
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   return (
-    <section id="roadmap" className="w-full pt-16 bg-white overflow-hidden">
-      <style>{`
-        .roadmap-timeline {
-          position: relative;
-          width: 100%;
-          background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 50%, rgba(250, 204, 21, 0.1) 100%);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .roadmap-timeline .swiper-container {
-          height: auto;
-          width: 100%;
-          position: relative;
-          min-height: 500px;
-        }
-
-        .roadmap-timeline .swiper-wrapper {
-          transition: 2s cubic-bezier(0.68, -0.4, 0.27, 1.34) 0.2s;
-        }
-
-        .roadmap-timeline .swiper-slide {
-          position: relative;
-          color: white;
-          overflow: hidden;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center center;
-          min-height: 500px;
-        }
-
-        .roadmap-timeline .swiper-slide::after {
-          content: "";
-          position: absolute;
-          z-index: 1;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(135deg, rgba(0, 0, 0, 0.7));
-          box-shadow: -230px 0 150px 60vw rgba(0, 0, 0, 0.7);
-          border-radius: 100%;
-        }
-
-        .roadmap-timeline .swiper-slide-content {
-          position: absolute;
-          text-align: center;
-          width: 90%;
-          max-width: 350px;
-          right: 50%;
-          top: 50%;
-          transform: translate(50%, -50%);
-          z-index: 2;
-          padding: 20px;
-        }
-
-        .roadmap-timeline .timeline-year {
-          display: block;
-          font-style: italic;
-          font-size: 32px;
-          margin-bottom: 12px;
-          transform: translate3d(20px, 0, 0);
-          color: #a855f7;
-          font-weight: 300;
-          opacity: 0;
-          transition: 0.2s ease 0.4s;
-        }
-
-        .roadmap-timeline .timeline-title {
-          font-weight: 800;
-          font-size: 20px;
-          margin: 0 0 12px;
-          opacity: 0;
-          transform: translate3d(20px, 0, 0);
-          transition: 0.2s ease 0.5s;
-          line-height: 1.3;
-        }
-
-        .roadmap-timeline .timeline-text {
-          line-height: 1.5;
-          font-size: 13px;
-          opacity: 0;
-          transform: translate3d(20px, 0, 0);
-          transition: 0.2s ease 0.6s;
-        }
-
-        .roadmap-timeline .swiper-slide-active .timeline-year {
-          opacity: 1;
-          transform: translate3d(0, 0, 0);
-          transition: 0.4s ease 1.6s;
-        }
-
-        .roadmap-timeline .swiper-slide-active .timeline-title {
-          opacity: 1;
-          transform: translate3d(0, 0, 0);
-          transition: 0.4s ease 1.7s;
-        }
-
-        .roadmap-timeline .swiper-slide-active .timeline-text {
-          opacity: 1;
-          transform: translate3d(0, 0, 0);
-          transition: 0.4s ease 1.8s;
-        }
-
-        .roadmap-timeline .swiper-pagination {
-          right: 15% !important;
-          height: 100%;
-          display: none;
-          flex-direction: column;
-          justify-content: center;
-          font-style: italic;
-          font-weight: 300;
-          font-size: 16px;
-          z-index: 1;
-          position: absolute;
-
-        }
-
-        .roadmap-timeline .swiper-pagination::before {
-          content: "";
-          position: absolute;
-          left: -30px;
-          top: 0;
-          height: 100%;
-          width: 1px;
-          background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .roadmap-timeline .swiper-pagination-bullet {
-          width: auto;
-          height: auto;
-          text-align: center;
-          opacity: 1;
-          background: transparent;
-          color: #a855f7;
-          margin: 20px 0 !important;
-          position: relative;
-          font-weight: 600;
-          font-size: 14px;
-          padding: 0 10px;
-        }
-
-        .roadmap-timeline .swiper-pagination-bullet::before {
-          content: "";
-          position: absolute;
-          top: 7px;
-          left: -32.5px;
-          width: 6px;
-          height: 6px;
-          border-radius: 100%;
-          background-color: #a855f7;
-          transform: scale(0);
-          transition: 0.2s;
-        }
-
-        .roadmap-timeline .swiper-pagination-bullet-active {
-          color: #a855f7;
-        }
-
-        .roadmap-timeline .swiper-pagination-bullet-active::before {
-          transform: scale(1);
-        }
-
-        .roadmap-timeline .swiper-button-next,
-        .roadmap-timeline .swiper-button-prev {
-          width: 50px;
-          height: 50px;
-          margin-top: 0;
-          z-index: 10;
-          transition: all 0.3s ease;
-          background-color: rgba(168, 85, 247, 0.9);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-
-        .roadmap-timeline .swiper-button-next:hover,
-        .roadmap-timeline .swiper-button-prev:hover {
-          background-color: rgba(236, 72, 153, 0.9);
-          transform: translateX(-50%) scale(1.1);
-        }
-
-        .roadmap-timeline .swiper-button-next svg,
-        .roadmap-timeline .swiper-button-prev svg {
-          display: none;
-        }
-
-        .roadmap-timeline .swiper-button-prev {
-          top: 20px;
-        }
-
-        .roadmap-timeline .swiper-button-prev::after {
-          content: "↑";
-          color: white;
-          font-size: 28px;
-          font-weight: bold;
-          line-height: 1;
-        }
-
-        .roadmap-timeline .swiper-button-next {
-          bottom: 20px;
-          top: auto;
-        }
-
-        .roadmap-timeline .swiper-button-next::after {
-          content: "↓";
-          color: white;
-          font-size: 28px;
-          font-weight: bold;
-          line-height: 1;
-        }
-
-        @media screen and (max-width: 640px) {
-          .roadmap-timeline .swiper-container {
-            height: 400px;
-          }
-
-          .roadmap-timeline .swiper-slide {
-            min-height: 400px;
-          }
-
-          .roadmap-timeline .swiper-slide::after {
-            right: -80%;
-            bottom: -15%;
+    <section
+      id="roadmap"
+      className="relative w-full overflow-visible px-4 py-8"
+      onClick={() => setActiveId(null)}
+    >
+      <div className="absolute top-0 left-0 right-0 h-12 flex items-center justify-center overflow-hidden">
+        <style>{`
+          .lightsaber-glow {
+            position: relative;
+            height: 6px;
             width: 100%;
-            height: 100%;
-            box-shadow: -150px 0 100px 40vw rgba(0, 0, 0, 0.7);
+            background: linear-gradient(to right, #0066ff, #ff1493);
+            filter: blur(5px);
           }
-
-          .roadmap-timeline .swiper-slide-content {
-            right: 50%;
-            top: 50%;
-            transform: translate(50%, -50%);
-            width: 85%;
-            max-width: 280px;
-            padding: 15px;
+          .lightsaber-glow::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(to right, #0066ff, #ff1493);
+            filter: blur(8px);
+            opacity: 0.8;
           }
-
-          .roadmap-timeline .timeline-year {
-            font-size: 28px;
-            margin-bottom: 10px;
-          }
-
-          .roadmap-timeline .timeline-title {
-            font-size: 18px;
-            margin: 0 0 10px;
-          }
-
-          .roadmap-timeline .timeline-text {
-            font-size: 12px;
-            line-height: 1.4;
-          }
-
-          .roadmap-timeline .swiper-button-prev {
-            width: 40px;
-            height: 40px;
-            top: 10px;
-          }
-
-          .roadmap-timeline .swiper-button-prev::after {
-            font-size: 24px;
-          }
-
-          .roadmap-timeline .swiper-button-next {
-            width: 40px;
-            height: 40px;
-            bottom: 10px;
-          }
-
-          .roadmap-timeline .swiper-button-next::after {
-            font-size: 24px;
-          }
-        }
-
-        @media screen and (min-width: 641px) and (max-width: 767px) {
-          .roadmap-timeline .swiper-container {
-            height: 500px;
-          }
-
-          .roadmap-timeline .swiper-slide {
-            min-height: 500px;
-          }
-
-          .roadmap-timeline .swiper-slide-content {
-            width: 85%;
-            max-width: 320px;
-            padding: 25px;
-          }
-
-          .roadmap-timeline .timeline-year {
-            font-size: 36px;
-            margin-bottom: 15px;
-          }
-
-          .roadmap-timeline .timeline-title {
-            font-size: 24px;
-            margin: 0 0 15px;
-          }
-
-          .roadmap-timeline .timeline-text {
-            font-size: 14px;
-          }
-        }
-
-        @media screen and (min-width: 768px) {
-          .roadmap-timeline .swiper-container {
-            height: 600px;
-          }
-
-          .roadmap-timeline .swiper-slide {
-            min-height: 600px;
-          }
-
-          .roadmap-timeline .swiper-slide::after {
-            right: -30%;
-            bottom: -8%;
-            width: 240px;
-            height: 50%;
-            box-shadow: -230px 0 150px 50vw rgba(0, 0, 0, 0.7);
-          }
-
-          .roadmap-timeline .swiper-slide-content {
-            right: 30%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 380px;
-            font-size: 11px;
-            text-align: right;
-            padding: 0;
-          }
-
-          .roadmap-timeline .timeline-year {
-            margin-bottom: 0;
-            font-size: 42px;
-          }
-
-          .roadmap-timeline .timeline-title {
-            font-size: 40px;
-            margin: 0;
-          }
-
-          .roadmap-timeline .swiper-pagination {
-            display: flex;
-          }
-        }
-
-        .roadmap-title {
-          text-align: center;
-          margin-bottom: 40px;
-        }
-
-        .roadmap-title h2 {
-          font-size: 2.5rem;
-          font-weight: 900;
-          background: linear-gradient(135deg, #7c3aed, #ec4899, #fbbf24);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          margin-bottom: 10px;
-        }
-
-        .roadmap-title p {
-          color: #666;
-          font-size: 1.1rem;
-        }
-      `}</style>
-
-      <div className="roadmap-title px-6">
-        <h2>Babies Fight Market Roadmap</h2>
-        <p>Watch our evolution from tiny babies to market champions</p>
+        `}</style>
+        <div className="lightsaber-glow w-full"></div>
       </div>
 
-      <div className="roadmap-timeline md:px-0">
-        <Swiper
-          modules={[Navigation, Pagination]}
-          navigation
-          pagination={{ clickable: true, type: "bullets" }}
-          speed={1600}
-          direction="vertical"
-          loop={false}
-          className="swiper-container"
+      <div className="relative my-4 mx-auto flex max-w-6xl flex-col items-center gap-10 ">
+        <motion.h2
+          initial={{ opacity: 0, y: 14, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: "spring", stiffness: 240, damping: 16 }}
+          className="text-center text-3xl font-black tracking-tight text-[#5B4B8A] sm:text-4xl md:text-5xl"
+          style={{ fontFamily: "'Fredoka One', 'Comic Sans MS', cursive" }}
         >
-          {roadmapPhases.map((phase, index) => (
-            <SwiperSlide
-              key={index}
-              style={{
-                backgroundImage: `url('${phase.image}')`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-              <div className="swiper-slide-content">
-                <span className="timeline-year">{phase.year}</span>
-                <h4 className="timeline-title">{phase.title}</h4>
-                <p className="timeline-text">{phase.description}</p>
+          Roadmap – Growing Up Fast
+        </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="relative w-full overflow-visible rounded-3xl bg-white/70 shadow-xl ring-1 ring-white/60 backdrop-blur"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Desktop/Tablet: roadmap illustration with hotspots */}
+          <div className="relative aspect-[4/3] w-full sm:aspect-[16/9] overflow-visible hidden sm:block">
+            <Image
+              src="/roadmap-placeholder.webp"
+              alt="Cute roadmap illustration of Baby Market Fighter growing up"
+              fill
+              priority
+              className="object-cover"
+            />
+
+            {milestones.map((milestone) => (
+              <div
+                key={milestone.id}
+                className="absolute"
+                style={{
+                  top: milestone.position.top,
+                  left: milestone.position.left,
+                  transform: "translate(-30%, -80%)",
+                }}
+              >
+                <button
+                  type="button"
+                  className="group relative h-10 w-36 rounded-xl bg-[#A7C7E7] shadow-lg shadow-[#A7C7E7]/50 ring-4 ring-white/80 transition hover:scale-110 hover:bg-[#FFD1DC] focus:outline-none focus:ring-4 focus:ring-[#FFD1DC] active:scale-95 opacity-0"
+                  onMouseEnter={() => setActiveId(milestone.id)}
+                  onMouseLeave={() => setActiveId(null)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveId((prev) => (prev === milestone.id ? null : milestone.id));
+                  }}
+                  aria-label={`${milestone.year} – ${milestone.title}`}
+                >
+
+                </button>
+
+                <AnimatePresence>
+                  {activeId === milestone.id && (
+                    <motion.div
+                      variants={dialogVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      className="absolute z-20 mt-3 w-64 max-w-xs -translate-x-1/2 sm:translate-x-0"
+                    >
+                      <div className="relative rounded-2xl bg-white/95 p-4 shadow-2xl ring-1 ring-[#A7C7E7]/40">
+                        <div className="absolute -top-2 left-6 h-3 w-3 rotate-45 rounded-sm bg-white/95 ring-1 ring-[#A7C7E7]/40" />
+                        <div className="flex items-center justify-between gap-2">
+                          <p className="text-xs font-semibold uppercase tracking-wide text-[#5B4B8A]">
+                            {milestone.year}
+                          </p>
+                          <span className={`rounded-full px-3 py-1 text-xs font-semibold ${statusStyles[milestone.status]}`}>
+                            {milestone.status}
+                          </span>
+                        </div>
+                        <h4
+                          className="mt-2 text-lg font-black text-[#FF7BAC]"
+                          style={{ fontFamily: "'Fredoka One', 'Comic Sans MS', cursive" }}
+                        >
+                          {milestone.title}
+                        </h4>
+                        <ul className="mt-3 space-y-2 text-sm text-[#4b5563]">
+                          {milestone.items.map((item, idx) => (
+                            <li key={idx} className="flex items-start gap-2">
+                              <span
+                                className={`mt-1 inline-block h-2.5 w-2.5 rounded-full ${item.done ? "bg-blue-500" : "bg-slate-300"
+                                  }`}
+                              />
+                              <span>{item.text}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            ))}
+          </div>
+
+          {/* Mobile: vertical milestone cards (no hidden hotspots) */}
+          <div className="block sm:hidden mt-6 space-y-4 px-1">
+            {milestones.map((m) => (
+              <motion.div
+                key={m.id}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.25 }}
+                className="rounded-2xl bg-white/95 p-4 shadow-lg ring-1 ring-[#A7C7E7]/30"
+              >
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[#5B4B8A]">{m.year}</p>
+                  <span className={`rounded-full px-3 py-1 text-xs font-semibold ${statusStyles[m.status]}`}>{m.status}</span>
+                </div>
+                <h4
+                  className="mt-1 text-lg font-black text-[#FF7BAC]"
+                  style={{ fontFamily: "'Fredoka One', 'Comic Sans MS', cursive" }}
+                >
+                  {m.title}
+                </h4>
+                <ul className="mt-3 space-y-2 text-sm text-[#4b5563]">
+                  {m.items.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span
+                        className={`mt-1 inline-block h-2.5 w-2.5 rounded-full ${item.done ? 'bg-blue-500' : 'bg-slate-300'}`}
+                      />
+                      <span>{item.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

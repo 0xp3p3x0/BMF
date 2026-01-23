@@ -257,7 +257,7 @@ const HeroSection = () => {
             position: sticky;
             inset-block-start: 0;
             isolation: isolate;
-            filter: hue-rotate(210deg);
+            filter: hue-rotate(200deg);
             overflow: hidden;
           }
 
