@@ -7,11 +7,101 @@ const heros = [
   {
     name: "Baby BTC Fighter",
     imgSrc: "./heros/baby-btc-fighter.png",
-    altText: "Fantasy warrior",
-    type: ""
+    altText: "Bitcoin Fighter",
+    heading: "Unleash Your",
+    highlight: "Baby BTC",
+    description: "Forged in the genesis block of Bitcoin, Baby BTC stands as the original protector of the blockchain. Endowed with exceptional defensive capabilities and timeless strength, this steadfast guardian has safeguarded the network from the very beginning. It is said that with every Bitcoin surge, Baby BTC's power intensifies even further."
+  },
+  {
+    name: "Baby ETH Fighter",
+    imgSrc: "./heros/baby-eth-fighter.png",
+    altText: "Ethereum Fighter",
+    heading: "Embark on Your",
+    highlight: "Baby ETH",
+    description: "Immerse Yourself in a World Where Legends Clash and Heroes Rise to Glory."
+  },
+  {
+    name: "Baby SOL Fighter",
+    imgSrc: "./heros/baby-sol-fighter.png",
+    altText: "Solana Fighter",
+    heading: "Master the",
+    highlight: "Baby SOL",
+    description: "Harness powerful spells and enchantments to dominate your foes and change the course of battle."
+  },
+  {
+    name: "Baby AVAX Fighter",
+    imgSrc: "./heros/baby-avax-fighter.png",
+    altText: "Avalanche Fighter",
+    heading: "Rise as the",
+    highlight: "Baby AVAX",
+    description: "Lead your team to victory with unparalleled strength and unwavering determination."
+  },
+  {
+    name: "Baby BNB Fighter",
+    imgSrc: "./heros/baby-bnb-fighter.png",
+    altText: "BNB Fighter",
+    heading: "Forge Your",
+    highlight: "Baby BNB",
+    description: "Craft legendary weapons and armor to dominate the battlefield."
+  },
+  {
+    name: "Baby UNI Fighter",
+    imgSrc: "./heros/baby-uni-fighter.png",
+    altText: "Uniswap Fighter",
+    heading: "Command the",
+    highlight: "Baby UNI",
+    description: "Wield the power of nature to crush your enemies."
+  },
+  {
+    name: "Baby XRP Fighter",
+    imgSrc: "./heros/baby-xrp-fighter.png",
+    altText: "XRP Fighter",
+    heading: "Strike with",
+    highlight: "Baby XRP",
+    description: "Move faster than the eye can see and strike with devastating precision."
+  },
+  {
+    name: "Baby DOT Fighter",
+    imgSrc: "./heros/baby-dot-fighter.png",
+    altText: "Polkadot Fighter",
+    heading: "Master the",
+    highlight: "Baby DOT",
+    description: "Connect and coordinate attacks across multiple dimensions."
+  },
+  {
+    name: "Baby DOGE Fighter",
+    imgSrc: "./heros/baby-doge-fighter.png",
+    altText: "Dogecoin Fighter",
+    heading: "Unleash",
+    highlight: "Baby DOGE",
+    description: "Harness the meme energy to overwhelm your opponents."
+  },
+  {
+    name: "Baby LINK Fighter",
+    imgSrc: "./heros/baby-link-fighter.png",
+    altText: "Chainlink Fighter",
+    heading: "Bridge",
+    highlight: "Baby LINK",
+    description: "Connect worlds and summon allies from across the multiverse."
+  },
+  {
+    name: "Baby ADA Fighter",
+    imgSrc: "./heros/baby-ada-fighter.png",
+    altText: "Cardano Fighter",
+    heading: "Strategize",
+    highlight: "Baby ADA",
+    description: "Plan every move with mathematical precision and execute flawlessly."
+  },
+  {
+    name: "Baby MATIC Fighter",
+    imgSrc: "./heros/baby-matic-fighter.png",
+    altText: "Polygon Fighter",
+    heading: "Scale Your",
+    highlight: "Baby MATIC",
+    description: "Multiply your strength and attack from all angles simultaneously."
   }
-
-]
+];
+  
 const HeroSection = () => {
   return (
     <section className="section">
